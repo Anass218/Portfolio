@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif; 
+            background: linear-gradient(135deg, #708090 0%, #778899 100%); 
+            min-height: 100vh; 
+        }
+        .nav { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            padding: 1rem 2rem; 
+            background: rgba(128, 128, 128, 0.3); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 0.5px solid rgba(128, 128, 128, 0.2); 
+            z-index: 1000; 
+            transition: all 0.3s ease; 
+        }
+        .nav-links { 
+            list-style: none; 
+            display: flex; 
+            justify-content: center; 
+            gap: 2rem; 
+        }
+        .nav-links a { 
+            color: #000000; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s ease; 
+        }
+        .nav-links a:hover { color: #007AFF; }
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 2rem; 
+        }
+        .glass { 
+            background: rgba(128, 128, 128, 0.2); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid rgba(128, 128, 128, 0.3); 
+            border-radius: 20px; 
+            padding: 3rem; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); 
+        }
+        .profile-img { 
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; 
+            margin-bottom: 2rem; 
+            border: 4px solid rgba(255, 255, 255, 0.3); 
+        }
+        .hero h1 { 
+            font-size: 3rem; 
+            color: #000000; 
+            margin-bottom: 1rem; 
+            font-weight: 700; 
+        }
+        .subtitle { 
+            font-size: 1.2rem; 
+            color: #333333; 
+            margin-bottom: 2rem; 
+        }
+        .tech-stack { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 1rem; 
+            justify-content: center; 
+            margin-bottom: 2rem; 
+        }
+        .tech-item { 
+            background: rgba(255, 255, 255, 0.25); 
+            padding: 0.5rem 1rem; 
+            border-radius: 25px; 
+            color: #000000; 
+            border: 1px solid rgba(0, 0, 0, 0.1); 
+            font-weight: 500; 
+        }
+        .btn { 
+            background: linear-gradient(135deg, #007AFF 0%, #0056CC 100%); 
+            color: #FFFFFF; 
+            padding: 1rem 2rem; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            text-decoration: none; 
+            display: inline-block; 
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3), 0 4px 8px rgba(0, 0, 0, 0.1); 
+            backdrop-filter: blur(10px); 
+            transition: all 0.3s ease; 
+        }
+        .btn:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 12px 30px rgba(0, 122, 255, 0.4), 0 6px 12px rgba(0, 0, 0, 0.15); 
+        }
+        .btn:active { 
+            transform: translateY(-1px) scale(0.98); 
+            transition: all 0.1s ease; 
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .card { 
+            text-align: center; 
+            color: #000000; 
+            transform: translateY(20px); 
+            opacity: 0; 
+            transition: all 0.6s ease; 
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif; 
+            background: rgba(128, 128, 128, 0.2); 
+            backdrop-filter: blur(30px); 
+            -webkit-backdrop-filter: blur(30px); 
+            border: 1px solid rgba(128, 128, 128, 0.3); 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); 
+            border-radius: 20px; 
+            padding: 2rem; 
+        }
+        .card.animate { transform: translateY(0); opacity: 1; }
+        .card i { 
+            font-size: 2.5rem; 
+            margin-bottom: 1rem; 
+            color: #007AFF; 
+            transition: all 0.3s ease; 
+        }
+        .card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04); 
+        }
+        .card:hover i { 
+            transform: scale(1.1); 
+            color: #0056CC; 
+        }
+        .card h3 { 
+            font-size: 1.3rem; 
+            margin-bottom: 1rem; 
+            font-weight: 600; 
+        }
+        h2 { font-size: 2.5rem; color: #000000; text-align: center; margin-bottom: 3rem; font-weight: 700; }
+        .footer { 
+            background: rgba(0, 0, 0, 0.25); 
+            padding: 3rem 2rem 1rem; 
+            color: #000000; 
+            text-align: center; 
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .social a { color: #000000; font-size: 1.5rem; margin: 0 0.5rem; }
+        .social a:hover { color: #007AFF; }
+        .footer a { color: #007AFF; text-decoration: none; }
+        .footer a:hover { color: #0056CC; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; }
+        .hamburger span { width: 20px; height: 2px; background: #007AFF; margin: 3px 0; transition: 0.3s; }
+
+        @media (max-width: 768px) {
+            .nav { padding: 1rem; }
+            .hamburger { display: flex; }
+            .nav-links { 
+                position: fixed; 
+                top: 60px; 
+                left: -100%; 
+                width: 100%; 
+                height: calc(100vh - 60px); 
+                background: rgba(128, 128, 128, 0.4); 
+                backdrop-filter: blur(20px); 
+                flex-direction: column; 
+                justify-content: flex-start; 
+                align-items: center; 
+                padding-top: 2rem; 
+                transition: left 0.3s ease; 
+            }
+            .nav-links.active { left: 0; }
+            .nav-links a { font-size: 1.2rem; margin: 1rem 0; }
+            .hero h1 { font-size: 2rem; }
+            .profile-img { width: 150px; height: 150px; }
+            .tech-stack { flex-direction: column; align-items: center; }
+            .container { padding: 2rem 1rem; }
+            .grid { grid-template-columns: 1fr; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="glass">
+            <img src="profile.jpg" alt="John Doe" class="profile-img">
+            <h1>Anass</h1>
+            <p class="subtitle">Full Stack Developer</p>
+            <div class="tech-stack">
+                <span class="tech-item">PHP</span>
+                <span class="tech-item">MySQL</span>
+                <span class="tech-item">JavaScript</span>
+                <span class="tech-item">HTML/CSS</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Mobile Apps</span>
+            </div>
+            <a href="#skills" class="btn">View Skills</a>
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <h2>Skills</h2>
+        <div class="grid">
+            <div class="card glass">
+                <i class="fab fa-php"></i>
+                <h3>PHP</h3>
+                <p>Server-side development</p>
+            </div>
+            <div class="card glass">
+                <i class="fas fa-database"></i>
+                <h3>MySQL</h3>
+                <p>Database management</p>
+            </div>
+            <div class="card glass">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile App</h3>
+                <p>Cross-platform development</p>
+            </div>
+            <div class="card glass">
+                <i class="fab fa-microsoft"></i>
+                <h3>C#</h3>
+                <p>Desktop applications</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="glass">
+            <div class="footer-grid">
+                <div>
+                    <h3>John Doe</h3>
+                    <p>Full Stack Developer</p>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:ookhinzaw43@gmail.com">ookhinzaw43@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> 09777539876</p>
+                    <p><i class="fas fa-phone"></i> 09690403865</p>
+                </div>
+                <div>
+                    <h4>Follow Me</h4>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(128, 128, 128, 0.5)';
+                nav.style.borderBottom = '0.5px solid rgba(128, 128, 128, 0.3)';
+                nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(128, 128, 128, 0.3)';
+                nav.style.borderBottom = '0.5px solid rgba(128, 128, 128, 0.2)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 200);
+                }
+            });
+        });
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
